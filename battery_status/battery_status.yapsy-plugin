@@ -1,0 +1,8 @@
+[Core]
+Name = BatteryStatus
+Module = battery_status
+
+[Documentation]
+Author = Nathan Darnell
+Version = 1.0
+Website = https://www.github.com/nathandarnell/sis_sal_plugins
