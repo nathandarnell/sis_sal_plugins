@@ -1,0 +1,8 @@
+[Core]
+Name = BatteryCycleCount
+Module = battery_cycle_count
+
+[Documentation]
+Author = Nathan Darnell
+Version = 1.0
+Website = https://www.github.com/nathandarnell

@@ -1,0 +1,152 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Battery Health Status</h3>
+      </div>
+
+      <div class="panel-body" id="display-body">
+        <div class="row">
+          <div class="col-md-3">
+            <a href="{% url 'machine_list' plugin 'ok' group_type group_id %}">
+              <div class="panel panel-green">
+                <div class="panel-heading">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <i class="fa fa-check fa-5x"></i>
+                    </div>
+                    <div class="col-md-9 text-right">
+                      <div class="huge">{{ ok }}</div>
+                      <div>Healthy Batteries</div>
+                    </div>
+                  </div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <a href="{% url 'machine_list' plugin 'alert' group_type group_id %}">
+            <div class="panel panel-red">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col-md-3">
+                    <i class="fa fa-exclamation-triangle fa-5x"></i>
+                  </div>
+                  <div class="col-md-9 text-right">
+                    <div class="huge">{{ alert }}</div>
+                    <div>Failing Batteries</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-md-3">
+          <a href="{% url 'machine_list' plugin 'unknown' group_type group_id %}">
+            <div class="panel panel-yellow">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col-md-3">
+                    <i class="fa fa-question-circle fa-5x"></i>
+                  </div>
+                  <div class="col-md-9 text-right">
+                    <div class="huge">{{ unknown }}</div>
+                    <div>Unknown Battery Health</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Charge Cycle Counts</h3>
+      </div>
+
+      <div class="panel-body" id="display-body">
+        <div class="row">
+          <div class="col-md-3">
+            <a href="{% url 'machine_list' plugin 'cycle_ok' group_type group_id %}">
+              <div class="panel panel-green">
+                <div class="panel-heading">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <i class="fa fa-unlock fa-5x"></i>
+                    </div>
+                    <div class="col-md-9 text-right">
+                      <div class="huge">{{ cycle_ok }}</div>
+                      <div>{{ cycle_ok_label }}</div>
+                    </div>
+                  </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        
+        <div class="col-md-3">
+          <a href="{% url 'machine_list' plugin 'cycle_warning' group_type group_id %}">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col-md-3">
+                    <i class="fa fa-lock fa-5x"></i>
+                  </div>
+                  <div class="col-md-9 text-right">
+                    <div class="huge">{{ cycle_warning }}</div>
+                    <div>{{ cycle_warning_label }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-md-3">
+          <a href="{% url 'machine_list' plugin 'cycle_alert' group_type group_id %}">
+            <div class="panel panel-red">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col-md-3">
+                    <i class="fa fa-warning fa-5x"></i>
+                  </div>
+                  <div class="col-md-9 text-right">
+                    <div class="huge">{{ cycle_alert }}</div>
+                    <div>{{ cycle_alert_label }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        
+        <div class="col-md-3">
+          <a href="{% url 'machine_list' plugin 'cycle_unknown' group_type group_id %}">
+            <div class="panel panel-yellow">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col-md-3">
+                    <i class="fa fa-certificate fa-5x"></i>
+                  </div>
+                  <div class="col-md-9 text-right">
+                    <div class="huge">{{ cycle_unknown }}</div>
+                    <div>{{ cycle_unknown_label }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+    </div>
+  </div>
+</div>

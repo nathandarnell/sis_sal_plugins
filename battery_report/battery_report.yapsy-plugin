@@ -1,0 +1,8 @@
+[Core]
+Name = BatteryReport
+Module = battery_report
+
+[Documentation]
+Author = Nathan Darnell
+Version = 1.0
+Website = https://www.github.com/nathandarnell

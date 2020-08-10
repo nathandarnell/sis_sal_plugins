@@ -1,0 +1,26 @@
+<div class="panel panel-default panel-traffic-light">
+  <div class="panel-heading">
+    {{ plugin.title }}
+  </div>
+  <!-- /.panel-heading -->
+
+  <div class="panel-body">
+    <a href="{% url 'machine_list' plugin 'cycle_ok' group_type group_id %}" class="btn btn-success">
+      <span class="bigger">{{ cycle_ok }}</span>
+      <br />{{ cycle_ok_label }}
+    </a>
+    <a href="{% url 'machine_list' plugin 'cycle_warning' group_type group_id %}" class="btn btn-info">
+      <span class="bigger">{{ cycle_warning }}</span>
+      <br />{{ cycle_warning_label }}
+    </a>
+    <a href="{% url 'machine_list' plugin 'cycle_alert' group_type group_id %}" class="btn btn-danger">
+      <span class="bigger">{{ cycle_alert }}</span>
+      <br />{{ cycle_alert_label }}
+    </a>
+    <a href="{% url 'machine_list' plugin 'cycle_unknown' group_type group_id %}" class="btn btn-warning">
+      <span class="bigger">{{ cycle_unknown }}</span>
+      <br />{{ cycle_unknown_label }}
+    </a>
+  </div>
+
+</div>
