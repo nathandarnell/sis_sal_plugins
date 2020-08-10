@@ -52,7 +52,7 @@ class SISUptime(sal.plugin.Widget):
 
     def _filter(self, queryset, data):
         if data == 'ok':
-            queryset = queryset.filter(PLUGIN_Q, OK_Q)
+            queryset = queryset.filter(PLUGIN_Q, pluginscriptsubmission__pluginscriptrow__pluginscript_data__int__range=(0, 7))
         elif data == 'warning':
             queryset = queryset.filter(PLUGIN_Q, WARNING_Q)
         elif data == 'alert':
