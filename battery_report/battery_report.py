@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 from django.db.models import Q
 from django.db.models.fields import Field
 from django.db.models import Transform
@@ -58,6 +60,8 @@ class BatteryReport(sal.plugin.ReportPlugin):
         context['cycle_alert'] = self._filter(queryset, 'cycle_alert').count()
         context['cycle_unknown'] = (
             queryset.filter(LAPTOPS_Q).count() - context['cycle_ok'] - context['cycle_alert'] - context['cycle_warning'])
+        laptops = OrderedDict()
+        context['charge_ok'] = self._filter(queryset, 'charge_ok').count()
         return context
 
     def filter(self, machines, data):
