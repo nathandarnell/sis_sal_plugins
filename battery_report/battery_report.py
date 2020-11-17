@@ -114,9 +114,9 @@ class BatteryReport(sal.plugin.ReportPlugin):
                 .exclude(pk__in=self._filter(machines, 'cycle_warning').values('pk'))
                 .exclude(pk__in=self._filter(machines, 'cycle_alert').values('pk')))
 
-                battery["life"] = (
-                    float(battery["MaxCapacity"]) /
-                    float(battery["DesignCapacity"])) * 100
+            battery["life"] = (
+                float(battery["MaxCapacity"]) /
+                float(battery["DesignCapacity"])) * 100
 
         else:
             machines = None
