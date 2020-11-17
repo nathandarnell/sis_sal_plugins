@@ -29,6 +29,7 @@ LAPTOPS_Q = Q(machine_model__contains='Book')
 
 class BatteryCycleCount(sal.plugin.Widget):
 
+    widget_width = 4
     description = "Cycle Count Battery Information"
     supported_os_families = [sal.plugin.OSFamilies.darwin]
 
