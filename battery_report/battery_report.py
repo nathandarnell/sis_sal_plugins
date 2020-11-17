@@ -26,7 +26,7 @@ TITLES = {
     'cycle_ok': 'Batteries with less than 300 cycles',
     'cycle_warning': 'Batteries with 300-500 cycles',
     'cycle_alert': 'Batteries with more than 500 cycles',
-    'cycle_unknown': 'Machines with no battery cycle data'},
+    'cycle_unknown': 'Machines with no battery cycle data',
     'charge_ok': 'Batteries charging above 85%',
     'charge_warning': 'Batteries charging between 60-85%',
     'charge_alert': 'Batteries charging below 60%',
