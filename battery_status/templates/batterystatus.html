@@ -8,17 +8,40 @@
     <a href="{% url 'machine_list' plugin 'ok' group_type group_id %}" class="btn btn-success">
       <span class="bigger">{{ ok }}</span>
       <br />
-      <i class="fa fa-check-square fa-3x"></i>
+      <i class="fa fa-check fa-3x"></i>
     </a>
     <a href="{% url 'machine_list' plugin 'alert' group_type group_id %}" class="btn btn-danger">
       <span class="bigger">{{ alert }}</span>
       <br />
-      <i class="fa fa-bell fa-3x"></i>
+      <i class="fa fa-exclamation-triangle fa-3x"></i>
     </a>
     <a href="{% url 'machine_list' plugin 'unknown' group_type group_id %}" class="btn btn-warning">
       <span class="bigger">{{ unknown }}</span>
       <br />
       <i class="fa fa-question-circle fa-3x"></i>
+    </a>
+  </div>
+
+  <div class="panel-heading">
+    Cycle Count
+  </div>
+
+  <div class="panel-body">
+    <a href="{% url 'machine_list' plugin 'cycle_ok' group_type group_id %}" class="btn btn-success">
+      <span class="bigger">{{ cycle_ok }}</span>
+      <br />{{ cycle_ok_label }}
+    </a>
+    <a href="{% url 'machine_list' plugin 'cycle_warning' group_type group_id %}" class="btn btn-info">
+      <span class="bigger">{{ cycle_warning }}</span>
+      <br />{{ cycle_warning_label }}
+    </a>
+    <a href="{% url 'machine_list' plugin 'cycle_alert' group_type group_id %}" class="btn btn-danger">
+      <span class="bigger">{{ cycle_alert }}</span>
+      <br />{{ cycle_alert_label }}
+    </a>
+    <a href="{% url 'machine_list' plugin 'cycle_unknown' group_type group_id %}" class="btn btn-warning">
+      <span class="bigger">{{ cycle_unknown }}</span>
+      <br />{{ cycle_unknown_label }}
     </a>
   </div>
 
