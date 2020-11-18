@@ -56,7 +56,7 @@ class SISUptime(sal.plugin.Widget):
         elif data == 'warning':
             queryset = queryset.filter(PLUGIN_Q, pluginscriptsubmission__pluginscriptrow__pluginscript_data__float__range=(8, 30))
         elif data == 'alert':
-            queryset = queryset.filter(PLUGIN_Q,pluginscriptsubmission__pluginscriptrow__pluginscript_data__float__gt=30)
+            queryset = queryset.filter(PLUGIN_Q, pluginscriptsubmission__pluginscriptrow__pluginscript_data__float__gt=30)
         return queryset
 
     def filter(self, machines, data):
