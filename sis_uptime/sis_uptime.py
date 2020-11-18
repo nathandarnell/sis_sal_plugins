@@ -6,14 +6,14 @@ import sal.plugin
 
 
 @Field.register_lookup
-class IntegerValue(Transform):
+class FloatValue(Transform):
     # Register this before you filter things, for example in models.py
-    lookup_name = 'int'  # Used as object.filter(LeftField__int__gte, "777")
+    lookup_name = 'float'  # Used as object.filter(LeftField__int__gte, "777")
     bilateral = True  # To cast both left and right
 
     def as_sql(self, compiler, connection):
         sql, params = compiler.compile(self.lhs)
-        sql = 'CAST(%s AS INT)' % sql
+        sql = 'CAST(%s AS FLOAT)' % sql
         return sql, params
 
 
@@ -27,9 +27,9 @@ WARNING_Q = eval('Q({})'.format(DATA.format(ALERT_RANGE[30:60])))
 PLUGIN_Q = Q(pluginscriptsubmission__plugin='Uptime',
              pluginscriptsubmission__pluginscriptrow__pluginscript_name='UptimeDays')
 TITLES = {
-    'ok': 'Machines with less than 30 days of uptime',
-    'warning': 'Machines with less than 90 days of uptime',
-    'alert': 'Machines with more than 90 days of uptime'}
+    'ok': 'Machines with less than 7 days of uptime',
+    'warning': 'Machines with less than 30 days of uptime',
+    'alert': 'Machines with more than 30 days of uptime'}
 
 
 class SISUptime(sal.plugin.Widget):
@@ -44,19 +44,19 @@ class SISUptime(sal.plugin.Widget):
         context['warning_count'] = self._filter(queryset, 'warning').count()
         context['alert_count'] = self._filter(queryset, 'alert').count()
         context.update({
-            'ok_label': '< 30 Days',
-            'warning_label': '< 90 Days',
-            'alert_label': '90 Days +',
+            'ok_label': '< 8 Days',
+            'warning_label': '8-30 Days',
+            'alert_label': '30 Days +',
         })
         return context
 
     def _filter(self, queryset, data):
         if data == 'ok':
-            queryset = queryset.filter(PLUGIN_Q, pluginscriptsubmission__pluginscriptrow__pluginscript_data__int__range=(0, 7))
+            queryset = queryset.filter(PLUGIN_Q, pluginscriptsubmission__pluginscriptrow__pluginscript_data__float__lt=8)
         elif data == 'warning':
-            queryset = queryset.filter(PLUGIN_Q, WARNING_Q)
+            queryset = queryset.filter(PLUGIN_Q, pluginscriptsubmission__pluginscriptrow__pluginscript_data__float__range=(8, 30))
         elif data == 'alert':
-            queryset = queryset.filter(PLUGIN_Q).exclude(ALERT_Q)
+            queryset = queryset.filter(PLUGIN_Q,pluginscriptsubmission__pluginscriptrow__pluginscript_data__float__gt=30)
         return queryset
 
     def filter(self, machines, data):

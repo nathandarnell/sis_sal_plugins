@@ -61,7 +61,7 @@ class BatteryReport(sal.plugin.ReportPlugin):
         context['cycle_unknown'] = (
             queryset.filter(LAPTOPS_Q).count() - context['cycle_ok'] - context['cycle_alert'] - context['cycle_warning'])
         laptops = OrderedDict()
-        context['charge_ok'] = self._filter(queryset, 'charge_ok').count()
+#         context['charge_ok'] = self._filter(queryset, 'charge_ok').count()
         return context
 
     def filter(self, machines, data):
