@@ -89,7 +89,7 @@ class BatteryStatus(sal.plugin.Widget):
                 machines
                 .filter(PLUGIN_Q,
                         CYCLE_Q,
-                        pluginscriptsubmission__pluginscriptrow__pluginscript_data__int__range=(300, 500))
+                        pluginscriptsubmission__pluginscriptrow__pluginscript_data__int__range=(300, 500)))
         elif data == 'cycle_alert':
             machines = (
                 machines
