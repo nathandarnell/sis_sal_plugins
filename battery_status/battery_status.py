@@ -1,9 +1,21 @@
 from django.db.models import Q
 from django.db.models import IntegerField
 from django.db.models.functions import Cast
+from django.db.models.fields import Field
+from django.db.models import Transform
 
 import sal.plugin
 
+@Field.register_lookup
+class IntegerValue(Transform):
+    # Register this before you filter things, for example in models.py
+    lookup_name = 'int'  # Used as object.filter(LeftField__int__gte, "777")
+    bilateral = True  # To cast both left and right
+
+    def as_sql(self, compiler, connection):
+        sql, params = compiler.compile(self.lhs)
+        sql = 'CAST(%s AS INT)' % sql
+        return sql, params
 
 TITLES = {
     'ok': 'Batteries that are Healthy',
@@ -34,6 +46,7 @@ class BatteryStatus(sal.plugin.Widget):
         context['cycle_ok_label'] = '< 300'
         context['cycle_warning_label'] = '300 - 500'
         context['cycle_alert_label'] = '500 +'
+        context['cycle_unknown_label'] = 'No Data'
         context['cycle_ok'] = self._filter(queryset, 'cycle_ok').count()
         context['cycle_warning'] = self._filter(queryset, 'cycle_warning').count()
         context['cycle_alert'] = self._filter(queryset, 'cycle_alert').count()
@@ -70,19 +83,19 @@ class BatteryStatus(sal.plugin.Widget):
                 machines
                 .filter(PLUGIN_Q,
                         CYCLE_Q,
-                        pluginscriptsubmission__pluginscriptrow__pluginscript_data__lt=300))
+                        pluginscriptsubmission__pluginscriptrow__pluginscript_data__int__lt=300))
         elif data == 'cycle_warning':
             machines = (
                 machines
                 .filter(PLUGIN_Q,
                         CYCLE_Q,
-                        pluginscriptsubmission__pluginscriptrow__pluginscript_data__range=(300, 500)))
+                        pluginscriptsubmission__pluginscriptrow__pluginscript_data__int__range=(300, 500))
         elif data == 'cycle_alert':
             machines = (
                 machines
                 .filter(PLUGIN_Q,
                         CYCLE_Q,
-                        pluginscriptsubmission__pluginscriptrow__pluginscript_data__gt=500))
+                        pluginscriptsubmission__pluginscriptrow__pluginscript_data__int__gt=500))
         elif data == 'cycle_unknown':
             machines = (
                 machines
